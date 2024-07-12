@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosh Me| Posts</title>
+    <style>
+        .postBlocks{
+            background-color: aqua;
+            border: 2px solid black;
+            width: 300px;
+            height: fit-content;
+            padding: 10px;
+            display: inline;
+        }
+        #post-container{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .userCred{
+            display: inline;
+            right: 0;
+            top:0;
+            margin-left:50% ;
+        }
+        #userId{
+            font-size: 24px;
+            color: blueviolet;
+            background-color: bisque;
+
+        }
+    </style>
+</head>
+<body onload="validateToken()">
+    <span>
+        <h2>Posts by all the Peers are presented here.</h2>
+        <button onclick="createPostPage()">Create Post</button>
+        <button onclick="logout()">Logout</button>
+        <input type="text" placeholder="Search Post by Author Name:" onchange="handleAuthorPost(event)">
+    </span>
+    <h4 class="userCred">
+        User: <i id="userId"></i> |  Followers: <i id="followersCount"></i>
+        
+    </h4>
+    
+    <h3 id="msg"></h3>
+    <div id="post-container"></div>
+    <script src="view-posts.js"></script>
+    <script src="logout.js"></script>
+</body>
+</html>
