@@ -1,7 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const postRoutes = express.Router();
-const postModel = require("../models/postModel");
+const postModel = require("../models/postModels");
 
 require("dotenv").config();
 
@@ -10,7 +10,7 @@ function validateToken(req, res, next) {
 
     let token = authHeaders && authHeaders.split(" ")[1];
     try {
-        let result = jwt.verify(token, process.env.ACCESS_SECRET_KEY);
+        let result = jwt.verify(token, process.env.ACCESS_SECURITY_KEY);
         // console.log(result);
         req.body = { data: { username: result.user_name, ...req.body }, status: true }
 
@@ -74,7 +74,7 @@ postRoutes.get('/getPost/:id', async (req, res) => {
     let token = authHeaders && authHeaders.split(" ")[1];
 
     try {
-        let result = jwt.verify(token, process.env.ACCESS_SECRET_KEY);
+        let result = jwt.verify(token, process.env.ACCESS_SECURITY_KEY);
 
         let postData = await postModel.findById(req.params.id);
 
@@ -102,7 +102,7 @@ postRoutes.put('/editPost/:id', async (req, res) => {
     let postId = req.params.id
 
     try {
-        let result = jwt.verify(token, process.env.ACCESS_SECRET_KEY);
+        let result = jwt.verify(token, process.env.ACCESS_SECURITY_KEY);
 
         let responseData = await postModel.findByIdAndUpdate(postId, postData, { new: true })
 

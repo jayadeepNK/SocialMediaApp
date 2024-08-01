@@ -6,7 +6,7 @@ const userRoutes = express.Router();
 require("dotenv").config();
 
 const generateAccessToken = (user)=>{
-    return jwt.sign(user, process.env.ACCESS_SECRET_KEY, {expiresIn:'1h'})
+    return jwt.sign(user, process.env.ACCESS_SECURITY_KEY, {expiresIn:'1h'})
 }
 
 
